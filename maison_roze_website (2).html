@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MAISON ROZÉ — an independent creative web design studio creating distinctive digital experiences for modern brands." />
+  <meta name="theme-color" content="#4D0E13" />
+  <title>MAISON ROZÉ — Digital with a little more drama.</title>
+
+  <style>
+    /* =========================================================
+       MAISON ROZÉ — STANDALONE WEBSITE
+       ========================================================= */
+
+    :root {
+      --creme: #EEE4DA;
+      --sand: #D8C4AC;
+      --pink: #C8A49F;
+      --burgundy: #4D0E13;
+      --ink: #24181A;
+      --paper: #F7F1EB;
+      --white: #FFFDFC;
+      --shadow: 0 24px 60px rgba(77, 14, 19, .12);
+      --radius-lg: 32px;
+      --radius-md: 18px;
+      --max: 1240px;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Arial, Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--creme);
+      font-family: var(--sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    body.modal-open { overflow: hidden; }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+
+    ::selection {
+      background: var(--burgundy);
+      color: var(--creme);
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .display {
+      font-family: var(--serif);
+      font-weight: 400;
+      letter-spacing: -.045em;
+      line-height: .94;
+    }
+
+    .outline {
+      color: transparent;
+      -webkit-text-stroke: 1px currentColor;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      background: rgba(238, 228, 218, .88);
+      border-bottom: 1px solid rgba(77, 14, 19, .10);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      font-family: var(--serif);
+      font-size: 1.28rem;
+      letter-spacing: .16em;
+      white-space: nowrap;
+      color: var(--burgundy);
+    }
+    .brand span { font-size: .72em; letter-spacing: .08em; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2.4vw, 34px);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .nav-links a {
+      position: relative;
+      padding-block: 7px;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--burgundy);
+      transition: width .25s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid var(--burgundy);
+      padding: 13px 20px;
+      border-radius: 999px;
+      background: var(--burgundy);
+      color: var(--creme);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: transform .25s ease, background .25s ease, color .25s ease;
+    }
+    .button:hover, .nav-cta:hover {
+      transform: translateY(-2px);
+      background: transparent;
+      color: var(--burgundy);
+    }
+    .button.secondary {
+      background: transparent;
+      color: var(--burgundy);
+    }
+    .button.secondary:hover {
+      background: var(--burgundy);
+      color: var(--creme);
+    }
+    .menu-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(77,14,19,.25);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--burgundy);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      padding: 150px 0 70px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 580px;
+      height: 580px;
+      border-radius: 50%;
+      background: var(--sand);
+      right: -250px;
+      top: 120px;
+      opacity: .55;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: var(--pink);
+      left: -170px;
+      bottom: 20px;
+      opacity: .5;
+    }
+    .hero-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: clamp(36px, 7vw, 100px);
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-copy { position: relative; z-index: 2; }
+    .hero-copy h1 {
+      margin: 20px 0 25px;
+      font-size: clamp(4.2rem, 9vw, 8.8rem);
+      max-width: 850px;
+      color: var(--burgundy);
+    }
+    .hero-copy h1 .small-line {
+      display: block;
+      font-family: var(--sans);
+      font-size: clamp(.9rem, 1.7vw, 1.2rem);
+      line-height: 1.2;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin: 0 0 14px 6px;
+    }
+    .hero-copy p {
+      max-width: 560px;
+      font-size: clamp(1rem, 1.4vw, 1.18rem);
+      color: #563b3d;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .hero-art {
+      min-height: 600px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .hero-card {
+      width: min(440px, 78vw);
+      aspect-ratio: 4 / 5;
+      position: relative;
+      transform: rotate(4deg);
+      background: var(--burgundy);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: "MAISON";
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      color: var(--creme);
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: .08em;
+    }
+    .hero-card::after {
+      content: "ROZÉ";
+      position: absolute;
+      right: -8px;
+      bottom: 36px;
+      color: var(--pink);
+      font-family: var(--serif);
+      font-size: clamp(4rem, 9vw, 8rem);
+      line-height: .8;
+      transform: rotate(-90deg);
+      transform-origin: bottom right;
+      letter-spacing: -.06em;
+    }
+    .hero-window {
+      position: absolute;
+      inset: 22% 13% 13%;
+      background: var(--creme);
+      border: 1px solid rgba(238,228,218,.45);
+      overflow: hidden;
+    }
+    .hero-window .sun {
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: var(--sand);
+      right: -40px;
+      top: -40px;
+    }
+    .hero-window .arch {
+      position: absolute;
+      width: 60%;
+      height: 72%;
+      left: 20%;
+      bottom: -2px;
+      border-radius: 150px 150px 0 0;
+      background: var(--pink);
+      border: 12px solid var(--sand);
+      box-shadow: inset 0 0 0 2px var(--burgundy);
+    }
+    .hero-window .word {
+      position: absolute;
+      left: 18px;
+      bottom: 22px;
+      font-family: var(--serif);
+      color: var(--burgundy);
+      font-size: 1.4rem;
+      letter-spacing: .12em;
+      z-index: 2;
+    }
+    .sticker {
+      position: absolute;
+      z-index: 4;
+      background: var(--sand);
+      color: var(--burgundy);
+      padding: 13px 16px;
+      border-radius: 3px;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 25px rgba(77,14,19,.12);
+    }
+    .sticker.one { left: 2%; top: 19%; transform: rotate(-9deg); }
+    .sticker.two { right: 0; bottom: 18%; transform: rotate(7deg); background: var(--pink); }
+    .sticker.three {
+      left: 9%;
+      bottom: 5%;
+      transform: rotate(4deg);
+      background: var(--creme);
+      border: 1px solid var(--burgundy);
+    }
+    .leopard {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at 30% 35%, var(--burgundy) 0 8%, transparent 9%),
+        radial-gradient(ellipse at 62% 30%, var(--burgundy) 0 10%, transparent 11%),
+        radial-gradient(ellipse at 45% 70%, var(--burgundy) 0 9%, transparent 10%),
+        radial-gradient(ellipse at 75% 68%, var(--burgundy) 0 7%, transparent 8%),
+        var(--pink);
+      opacity: .8;
+      border: 7px solid var(--creme);
+      right: -35px;
+      top: 5%;
+      transform: rotate(13deg);
+      box-shadow: var(--shadow);
+    }
+
+    /* ---------- MARQUEE ---------- */
+    .marquee {
+      overflow: hidden;
+      background: var(--burgundy);
+      color: var(--creme);
+      border-block: 1px solid rgba(238,228,218,.25);
+    }
+    .marquee-track {
+      width: max-content;
+      display: flex;
+      gap: 30px;
+      padding: 14px 0;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee span {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+    .marquee .dot { color: var(--pink); }
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
+    }
+
+    /* ---------- GENERAL SECTIONS ---------- */
+    section { padding: 120px 0; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    .section-head h2 {
+      margin: 10px 0 0;
+      font-size: clamp(3rem, 6vw, 6.3rem);
+      color: var(--burgundy);
+    }
+    .section-head p {
+      max-width: 390px;
+      margin: 0;
+      color: #634b4d;
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about { background: var(--paper); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-index {
+      font-family: var(--serif);
+      font-size: 8rem;
+      line-height: .8;
+      color: var(--pink);
+      opacity: .8;
+    }
+    .about-copy {
+      position: relative;
+      padding-left: 5vw;
+    }
+    .about-copy::before {
+      content: "R";
+      position: absolute;
+      left: -30px;
+      top: -65px;
+      font-family: var(--serif);
+      font-size: 14rem;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(77,14,19,.16);
+      z-index: 0;
+    }
+    .about-copy > * { position: relative; z-index: 1; }
+    .about-copy h3 {
+      margin: 0 0 22px;
+      max-width: 760px;
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 4.5vw, 5rem);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--burgundy);
+      letter-spacing: -.04em;
+    }
+    .about-copy p {
+      max-width: 760px;
+      font-size: 1.05rem;
+      color: #5b4648;
+    }
+    .about-note {
+      margin-top: 34px;
+      display: inline-block;
+      border-top: 1px solid var(--burgundy);
+      padding-top: 12px;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+    }
+
+    /* ---------- PORTFOLIO ---------- */
+    .portfolio {
+      background: var(--creme);
+      position: relative;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 28px;
+    }
+    .project {
+      grid-column: span 6;
+      position: relative;
+    }
+    .project:nth-child(2) { margin-top: 100px; }
+    .project:nth-child(3) { margin-top: -40px; }
+    .project:nth-child(4) { margin-top: 60px; }
+    .project-visual {
+      aspect-ratio: 1.18 / 1;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(77,14,19,.12);
+      box-shadow: 0 16px 40px rgba(77,14,19,.08);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .project:hover .project-visual {
+      transform: translateY(-8px) rotate(.4deg);
+      box-shadow: var(--shadow);
+    }
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 4px 0;
+    }
+    .project-meta h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--burgundy);
+    }
+    .project-meta p {
+      margin: 4px 0 0;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: #76595b;
+    }
+    .view-link {
+      align-self: center;
+      border-bottom: 1px solid var(--burgundy);
+      padding-bottom: 3px;
+      color: var(--burgundy);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: none;
+      border-inline: 0;
+      border-top: 0;
+    }
+
+    /* Project 1 — fashion */
+    .fashion {
+      background: var(--sand);
+      padding: 28px;
+    }
+    .fashion .mini-nav {
+      display: flex;
+      justify-content: space-between;
+      font-size: .48rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+    }
+    .fashion .mini-title {
+      position: absolute;
+      left: 10%;
+      top: 21%;
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 7vw, 6rem);
+      line-height: .8;
+      color: var(--burgundy);
+      z-index: 2;
+    }
+    .fashion .mini-title span { display: block; margin-left: 28px; }
+    .fashion .dress {
+      position: absolute;
+      width: 38%;
+      height: 68%;
+      right: 13%;
+      bottom: 0;
+      background: var(--burgundy);
+      clip-path: polygon(35% 0, 65% 0, 76% 16%, 100% 100%, 0 100%, 24% 16%);
+      opacity: .94;
+    }
+    .fashion .flower {
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      left: -55px;
+      bottom: -75px;
+      background: var(--pink);
+    }
+
+    /* Project 2 — café */
+    .cafe {
+      background: #f2e5d5;
+      padding: 24px;
+    }
+    .cafe .cafe-top {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--serif);
+      font-size: .8rem;
+      color: var(--burgundy);
+    }
+    .cafe .cafe-title {
+      position: absolute;
+      left: 10%;
+      top: 28%;
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: .8;
+      color: var(--burgundy);
+    }
+    .cafe .table {
+      position: absolute;
+      left: 9%;
+      bottom: 14%;
+      width: 82%;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--burgundy);
+      box-shadow: 0 50px 0 -20px var(--burgundy);
+    }
+    .cafe .cup {
+      position: absolute;
+      width: 86px;
+      height: 72px;
+      right: 20%;
+      bottom: 29%;
+      border-radius: 10px 10px 30px 30px;
+      background: var(--creme);
+      border: 3px solid var(--burgundy);
+      box-shadow: 10px 0 0 -3px #f2e5d5, 10px 0 0 0 var(--burgundy);
+    }
+    .cafe .leaf {
+      position: absolute;
+      width: 180px;
+      height: 80px;
+      left: 0;
+      top: 45%;
+      border-radius: 100% 0;
+      background: var(--pink);
+      transform: rotate(-15deg);
+      opacity: .7;
+    }
+
+    /* Project 3 — beauty */
+    .beauty {
+      background: var(--pink);
+      padding: 26px;
+    }
+    .beauty .beauty-logo {
+      text-align: center;
+      font-family: var(--serif);
+      color: var(--burgundy);
+      font-size: 1.1rem;
+      letter-spacing: .22em;
+    }
+    .beauty .bottle {
+      position: absolute;
+      width: 120px;
+      height: 230px;
+      left: 50%;
+      top: 22%;
+      transform: translateX(-50%);
+      border-radius: 55px 55px 25px 25px;
+      background: var(--creme);
+      border: 2px solid var(--burgundy);
+      box-shadow: 20px 10px 0 -5px rgba(216,196,172,.8);
+    }
+    .beauty .cap {
+      position: absolute;
+      width: 56px;
+      height: 36px;
+      left: 50%;
+      top: 15%;
+      transform: translateX(-50%);
+      background: var(--burgundy);
+      border-radius: 6px 6px 0 0;
+    }
+    .beauty .label {
+      position: absolute;
+      inset: 45% 13% auto;
+      text-align: center;
+      font-family: var(--serif);
+      color: var(--burgundy);
+      font-size: .9rem;
+    }
+    .beauty .petal {
+      position: absolute;
+      width: 150px;
+      height: 90px;
+      right: -20px;
+      bottom: 12%;
+      border-radius: 100% 0;
+      background: var(--sand);
+      transform: rotate(25deg);
+    }
+
+    /* Project 4 — interiors */
+    .interior {
+      background: var(--burgundy);
+      padding: 24px;
+      color: var(--creme);
+    }
+    .interior .room-label {
+      font-size: .5rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .interior .room {
+      position: absolute;
+      inset: 20% 10% 10%;
+      border: 2px solid var(--creme);
+      background: var(--sand);
+    }
+    .interior .window {
+      position: absolute;
+      width: 32%;
+      height: 54%;
+      left: 12%;
+      top: 12%;
+      border: 8px solid var(--burgundy);
+      background: var(--pink);
+    }
+    .interior .sofa {
+      position: absolute;
+      width: 54%;
+      height: 22%;
+      left: 28%;
+      bottom: 17%;
+      border-radius: 22px 22px 6px 6px;
+      background: var(--creme);
+      border: 3px solid var(--burgundy);
+    }
+    .interior .plant {
+      position: absolute;
+      right: 10%;
+      bottom: 16%;
+      width: 20px;
+      height: 80px;
+      background: var(--burgundy);
+    }
+    .interior .plant::before,
+    .interior .plant::after {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 30px;
+      background: var(--pink);
+      border-radius: 100% 0;
+    }
+    .interior .plant::before { right: -55px; top: 0; transform: rotate(-25deg); }
+    .interior .plant::after { right: -15px; top: 30px; transform: rotate(25deg); }
+
+    /* ---------- SERVICES ---------- */
+    .services {
+      background: var(--burgundy);
+      color: var(--creme);
+    }
+    .services .section-head h2,
+    .services .section-head p { color: var(--creme); }
+    .services .section-head p { opacity: .78; }
+    .service-list { border-top: 1px solid rgba(238,228,218,.3); }
+    .service {
+      display: grid;
+      grid-template-columns: 80px 1fr 120px;
+      align-items: center;
+      gap: 20px;
+      min-height: 100px;
+      border-bottom: 1px solid rgba(238,228,218,.3);
+      transition: background .25s ease, padding .25s ease;
+    }
+    .service:hover {
+      background: rgba(200,164,159,.12);
+      padding-inline: 16px;
+    }
+    .service-num {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--pink);
+    }
+    .service h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3vw, 2.7rem);
+      font-weight: 400;
+    }
+    .service p {
+      margin: 4px 0 0;
+      max-width: 650px;
+      font-size: .88rem;
+      color: rgba(238,228,218,.7);
+    }
+    .service-arrow {
+      text-align: right;
+      font-size: 1.5rem;
+      color: var(--pink);
+    }
+
+    /* ---------- PROCESS ---------- */
+    .process { background: var(--sand); }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .process-card {
+      min-height: 320px;
+      padding: 26px;
+      background: var(--creme);
+      border: 1px solid rgba(77,14,19,.1);
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s ease;
+    }
+    .process-card:hover { transform: translateY(-7px); }
+    .process-card:nth-child(even) { background: var(--paper); margin-top: 45px; }
+    .process-card .num {
+      font-family: var(--serif);
+      font-size: 4rem;
+      color: var(--pink);
+    }
+    .process-card h3 {
+      margin: 50px 0 10px;
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--burgundy);
+    }
+    .process-card p {
+      margin: 0;
+      font-size: .88rem;
+      color: #654e50;
+    }
+    .process-card::after {
+      content: "";
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 1px solid var(--pink);
+      right: -40px;
+      bottom: -40px;
+    }
+
+    /* ---------- PRICING ---------- */
+    .pricing { background: var(--paper); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+    .price-card {
+      padding: 34px;
+      border: 1px solid rgba(77,14,19,.18);
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      background: var(--creme);
+    }
+    .price-card.featured {
+      background: var(--burgundy);
+      color: var(--creme);
+      transform: translateY(-20px);
+      box-shadow: var(--shadow);
+    }
+    .price-card .tag {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--pink);
+      min-height: 20px;
+    }
+    .price-card h3 {
+      margin: 25px 0 5px;
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 400;
+      color: var(--burgundy);
+    }
+    .price-card.featured h3 { color: var(--creme); }
+    .price-card .price {
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #76595b;
+      margin-bottom: 30px;
+    }
+    .price-card.featured .price { color: rgba(238,228,218,.7); }
+    .price-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid rgba(77,14,19,.12);
+      flex: 1;
+    }
+    .price-card.featured ul { border-color: rgba(238,228,218,.18); }
+    .price-card li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(77,14,19,.12);
+      font-size: .86rem;
+    }
+    .price-card.featured li { border-color: rgba(238,228,218,.18); }
+    .price-card li::before {
+      content: "✦";
+      color: var(--pink);
+      margin-right: 10px;
+    }
+    .price-card .button {
+      width: 100%;
+      margin-top: 25px;
+    }
+    .price-card.featured .button {
+      background: var(--creme);
+      color: var(--burgundy);
+      border-color: var(--creme);
+    }
+    .price-card.featured .button:hover {
+      background: transparent;
+      color: var(--creme);
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact {
+      background: var(--creme);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: "LET'S";
+      position: absolute;
+      right: -50px;
+      top: 20px;
+      font-family: var(--serif);
+      font-size: clamp(7rem, 18vw, 16rem);
+      line-height: .8;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(77,14,19,.08);
+      pointer-events: none;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 70px;
+      position: relative;
+      z-index: 2;
+    }
+    .contact-copy h2 {
+      margin: 12px 0 22px;
+      font-size: clamp(4rem, 8vw, 8rem);
+      color: var(--burgundy);
+    }
+    .contact-copy p {
+      max-width: 480px;
+      color: #654e50;
+    }
+    .contact-email {
+      display: inline-block;
+      margin-top: 20px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--burgundy);
+      color: var(--burgundy);
+      font-family: var(--serif);
+      font-size: 1.35rem;
+    }
+    form {
+      padding: 30px;
+      background: var(--paper);
+      border: 1px solid rgba(77,14,19,.12);
+      box-shadow: var(--shadow);
+    }
+    .field {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: .64rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+    }
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid rgba(77,14,19,.18);
+      border-radius: 0;
+      padding: 13px 14px;
+      background: var(--creme);
+      color: var(--ink);
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--burgundy);
+      box-shadow: 0 0 0 3px rgba(200,164,159,.35);
+    }
+    textarea { min-height: 130px; resize: vertical; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-note {
+      margin-top: 12px;
+      font-size: .68rem;
+      color: #76595b;
+    }
+    .form-status {
+      margin-top: 14px;
+      font-size: .82rem;
+      color: var(--burgundy);
+      min-height: 20px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      padding: 35px 0;
+      background: var(--burgundy);
+      color: var(--creme);
+    }
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(238,228,218,.2);
+    }
+    .footer-brand {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      letter-spacing: .12em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 22px;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: .68rem;
+      color: rgba(238,228,218,.65);
+    }
+
+    /* ---------- MODAL ---------- */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: none;
+      place-items: center;
+      padding: 24px;
+      background: rgba(36,24,26,.65);
+      backdrop-filter: blur(8px);
+    }
+    .modal.active { display: grid; }
+    .modal-card {
+      width: min(780px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      background: var(--creme);
+      color: var(--ink);
+      padding: 36px;
+      position: relative;
+      box-shadow: 0 30px 90px rgba(0,0,0,.3);
+    }
+    .modal-card h3 {
+      margin: 0 0 8px;
+      font-family: var(--serif);
+      font-size: 3rem;
+      color: var(--burgundy);
+      font-weight: 400;
+    }
+    .modal-card p { color: #654e50; }
+    .modal-preview {
+      height: 260px;
+      margin: 25px 0;
+      border: 1px solid rgba(77,14,19,.15);
+      background:
+        linear-gradient(120deg, transparent 0 38%, rgba(77,14,19,.08) 38% 39%, transparent 39%),
+        var(--sand);
+      position: relative;
+      overflow: hidden;
+    }
+    .modal-preview::before {
+      content: "DEMO CONCEPT";
+      position: absolute;
+      left: 24px;
+      top: 20px;
+      font-size: .65rem;
+      letter-spacing: .2em;
+      font-weight: 700;
+      color: var(--burgundy);
+    }
+    .modal-preview::after {
+      content: "MAISON ROZÉ";
+      position: absolute;
+      left: 24px;
+      bottom: 20px;
+      font-family: var(--serif);
+      font-size: 2.8rem;
+      color: var(--burgundy);
+    }
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(77,14,19,.2);
+      background: transparent;
+      color: var(--burgundy);
+      font-size: 1.2rem;
+    }
+
+    /* ---------- REVEAL ANIMATION ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 980px) {
+      .nav-links {
+        position: fixed;
+        top: 76px;
+        left: 20px;
+        right: 20px;
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--paper);
+        border: 1px solid rgba(77,14,19,.15);
+        box-shadow: var(--shadow);
+        transform: translateY(-20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: .25s ease;
+      }
+      .nav-links.open {
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .nav-links a { padding: 10px; }
+      .nav-cta { display: none; }
+      .menu-toggle { display: grid; place-items: center; }
+      .hero-grid, .about-grid, .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-art {
+        min-height: 520px;
+        margin-top: -20px;
+      }
+      .about-index { display: none; }
+      .about-copy { padding-left: 25px; }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .price-card.featured { transform: none; }
+      .price-card { min-height: 410px; }
+      .contact-grid { gap: 45px; }
+    }
+
+    @media (max-width: 700px) {
+      .container { width: min(calc(100% - 28px), var(--max)); }
+      section { padding: 80px 0; }
+      .hero { padding-top: 125px; }
+      .hero-copy h1 { font-size: clamp(3.8rem, 18vw, 6.2rem); }
+      .hero-art { min-height: 430px; }
+      .hero-card { width: min(330px, 78vw); }
+      .leopard { width: 100px; height: 100px; }
+      .section-head {
+        display: block;
+        margin-bottom: 38px;
+      }
+      .section-head p { margin-top: 18px; }
+      .portfolio-grid { display: block; }
+      .project, .project:nth-child(2), .project:nth-child(3), .project:nth-child(4) {
+        margin: 0 0 48px;
+      }
+      .project-visual { aspect-ratio: 1 / 1.05; }
+      .service {
+        grid-template-columns: 45px 1fr 30px;
+        min-height: 110px;
+      }
+      .service p { font-size: .78rem; }
+      .process-grid { grid-template-columns: 1fr; }
+      .process-card, .process-card:nth-child(even) { margin: 0; min-height: 250px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top, .footer-bottom { display: block; }
+      .footer-links { margin-top: 18px; flex-wrap: wrap; }
+      .footer-bottom > * { margin: 8px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========================= HEADER ========================= -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="MAISON ROZÉ home">MAISON <span>ROZÉ</span></a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Packages</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="nav-cta" href="#contact">Start a Project <span>↗</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <!-- ========================= HERO ========================= -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Independent creative web studio</span>
+
+          <h1 class="display">
+            <span class="small-line">Digital with</span>
+            a little<br />
+            <span class="outline">more</span> drama.
+          </h1>
+
+          <p>
+            MAISON ROZÉ creates sophisticated websites for businesses and brands
+            that want to look considered, memorable and unmistakably themselves.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="#work">Explore Our Work <span>↘</span></a>
+            <a class="button secondary" href="#contact">Start a Project <span>↗</span></a>
+          </div>
+        </div>
+
+        <div class="hero-art reveal" aria-label="Editorial MAISON ROZÉ visual composition">
+          <div class="leopard" aria-hidden="true"></div>
+          <div class="sticker one">Creative direction</div>
+          <div class="sticker two">Web / Brand / Digital</div>
+          <div class="sticker three">Est. for bold ideas</div>
+
+          <div class="hero-card">
+            <div class="hero-window">
+              <div class="sun"></div>
+              <div class="arch"></div>
+              <div class="word">MAISON ROZÉ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= MARQUEE ========================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>WEB DESIGN</span><span class="dot">✦</span>
+        <span>CREATIVE DIRECTION</span><span class="dot">✦</span>
+        <span>BRAND DIGITAL</span><span class="dot">✦</span>
+        <span>MAISON ROZÉ</span><span class="dot">✦</span>
+        <span>WEB DESIGN</span><span class="dot">✦</span>
+        <span>CREATIVE DIRECTION</span><span class="dot">✦</span>
+        <span>BRAND DIGITAL</span><span class="dot">✦</span>
+        <span>MAISON ROZÉ</span><span class="dot">✦</span>
+      </div>
+    </div>
+
+    <!-- ========================= ABOUT ========================= -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-index reveal">01</div>
+
+          <div class="about-copy reveal">
+            <span class="eyebrow">The house</span>
+            <h3>Websites with a point of view.</h3>
+            <p>
+              MAISON ROZÉ is an independent creative and web design studio
+              focused on building distinctive digital experiences for modern
+              businesses, founders and brands.
+            </p>
+            <p>
+              We combine editorial thinking, elegant typography, expressive
+              layouts and practical development to make websites that feel
+              personal — not pulled from a template.
+            </p>
+            <span class="about-note">Strategy × Design × Development</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= PORTFOLIO ========================= -->
+    <section class="portfolio" id="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Selected concepts</span>
+            <h2 class="display">The work.</h2>
+          </div>
+          <p>
+            Four original demo directions showing how MAISON ROZÉ can translate
+            different industries into memorable digital identities.
+          </p>
+        </div>
+
+        <div class="portfolio-grid">
+          <article class="project reveal">
+            <div class="project-visual fashion">
+              <div class="mini-nav"><span>Maison Atelier</span><span>Shop / Journal / Contact</span></div>
+              <div class="mini-title">FORM<br /><span>NO. 01</span></div>
+              <div class="dress"></div>
+              <div class="flower"></div>
+            </div>
+            <div class="project-meta">
+              <div>
+                <h3>Atelier No. 01</h3>
+                <p>Luxury fashion — demo concept</p>
+              </div>
+              <button class="view-link" data-project="fashion">View concept ↗</button>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-visual cafe">
+              <div class="cafe-top"><span>RUE 14</span><span>Open daily</span></div>
+              <div class="cafe-title">slow<br />coffee.</div>
+              <div class="leaf"></div>
+              <div class="table"></div>
+              <div class="cup"></div>
+            </div>
+            <div class="project-meta">
+              <div>
+                <h3>Rue 14 Café</h3>
+                <p>Hospitality — demo concept</p>
+              </div>
+              <button class="view-link" data-project="cafe">View concept ↗</button>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-visual beauty">
+              <div class="beauty-logo">ÉCLAT / SKIN</div>
+              <div class="cap"></div>
+              <div class="bottle"><div class="label">BOTANICAL<br />ESSENCE</div></div>
+              <div class="petal"></div>
+            </div>
+            <div class="project-meta">
+              <div>
+                <h3>Éclat Botanicals</h3>
+                <p>Beauty — demo concept</p>
+              </div>
+              <button class="view-link" data-project="beauty">View concept ↗</button>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-visual interior">
+              <div class="room-label">Forma Living / Interiors</div>
+              <div class="room">
+                <div class="window"></div>
+                <div class="sofa"></div>
+                <div class="plant"></div>
+              </div>
+            </div>
+            <div class="project-meta">
+              <div>
+                <h3>Forma Living</h3>
+                <p>Interior design — demo concept</p>
+              </div>
+              <button class="view-link" data-project="interior">View concept ↗</button>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================= SERVICES ========================= -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">What we do</span>
+            <h2 class="display">The services.</h2>
+          </div>
+          <p>
+            Flexible creative and digital support, from a focused one-page
+            website to a complete brand-led web presence.
+          </p>
+        </div>
+
+        <div class="service-list">
+          <div class="service reveal">
+            <div class="service-num">01</div>
+            <div>
+              <h3>Website Design</h3>
+              <p>Editorial layouts, clear user journeys, expressive typography and a visual system built around your brand.</p>
+            </div>
+            <div class="service-arrow">↗</div>
+          </div>
+
+          <div class="service reveal">
+            <div class="service-num">02</div>
+            <div>
+              <h3>Website Development</h3>
+              <p>Clean, responsive front-end builds designed to work beautifully across phones, tablets and desktops.</p>
+            </div>
+            <div class="service-arrow">↗</div>
+          </div>
+
+          <div class="service reveal">
+            <div class="service-num">03</div>
+            <div>
+              <h3>Brand Direction</h3>
+              <p>Visual direction, typography, colour systems and digital art direction for brands finding their point of view.</p>
+            </div>
+            <div class="service-arrow">↗</div>
+          </div>
+
+          <div class="service reveal">
+            <div class="service-num">04</div>
+            <div>
+              <h3>Responsive / Mobile</h3>
+              <p>Every layout is considered for small screens, touch interactions and real-world browsing behaviour.</p>
+            </div>
+            <div class="service-arrow">↗</div>
+          </div>
+
+          <div class="service reveal">
+            <div class="service-num">05</div>
+            <div>
+              <h3>Maintenance & Support</h3>
+              <p>Post-launch updates, content changes and ongoing practical support when your website needs a little care.</p>
+            </div>
+            <div class="service-arrow">↗</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= PROCESS ========================= -->
+    <section class="process" id="process">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">How it happens</span>
+            <h2 class="display">The process.</h2>
+          </div>
+          <p>
+            Clear stages, thoughtful decisions and no unnecessary mystery.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card reveal">
+            <div class="num">01</div>
+            <h3>Discovery</h3>
+            <p>We understand your business, audience, goals, references and the feeling your website should create.</p>
+          </article>
+          <article class="process-card reveal">
+            <div class="num">02</div>
+            <h3>Design</h3>
+            <p>We shape the visual direction, structure the pages and turn the strategy into an expressive interface.</p>
+          </article>
+          <article class="process-card reveal">
+            <div class="num">03</div>
+            <h3>Development</h3>
+            <p>The approved direction becomes a responsive, functional website with careful attention to details and interactions.</p>
+          </article>
+          <article class="process-card reveal">
+            <div class="num">04</div>
+            <h3>Launch</h3>
+            <p>We test the experience, prepare the final files and help you take the new website live with confidence.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= PRICING ========================= -->
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Ways to work together</span>
+            <h2 class="display">The packages.</h2>
+          </div>
+          <p>
+
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card reveal">
+            <span class="tag">For focused launches</span>
+            <h3>The Petite</h3>
+            <div class="price">PKR 2,750 <span style="opacity:.75;">/ approx. $9.95</span></div>
+            <ul>
+              <li>Focused website direction</li>
+              <li>Up to a small core page set</li>
+              <li>Responsive design</li>
+              <li>Essential contact / enquiry flow</li>
+              <li>Launch support</li>
+            </ul>
+            <button class="button secondary package-btn" data-package="The Petite">Request a Quote ↗</button>
+          </article>
+
+          <article class="price-card featured reveal">
+            <span class="tag">Most versatile</span>
+            <h3>The Signature</h3>
+            <div class="price">PKR 3,999 <span style="opacity:.75;">/ approx. $14.46</span></div>
+            <ul>
+              <li>Custom brand-led web direction</li>
+              <li>Multi-page website</li>
+              <li>Responsive development</li>
+              <li>Interactive details & animations</li>
+              <li>Launch + support</li>
+            </ul>
+            <button class="button package-btn" data-package="The Signature">Request a Quote ↗</button>
+          </article>
+
+          <article class="price-card reveal">
+            <span class="tag">For bigger ambitions</span>
+            <h3>The Bespoke</h3>
+            <div class="price">PKR 5,000 <span style="opacity:.75;">/ approx. $18.08</span></div>
+            <ul>
+              <li>Full creative direction</li>
+              <li>Complex or custom page structures</li>
+              <li>Advanced interactions</li>
+              <li>Content / brand system support</li>
+              <li>Ongoing care options</li>
+            </ul>
+            <button class="button secondary package-btn" data-package="The Bespoke">Request a Quote ↗</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= CONTACT ========================= -->
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <span class="eyebrow">Your next chapter</span>
+          <h2 class="display">Let's make it memorable.</h2>
+          <p>
+            Tell us what you are building, what you need help with and what you
+            want your website to feel like. We will turn that first conversation
+            into a clear next step.
+          </p>
+
+          <a class="contact-email" id="emailLink" href="mailto:rozi.archivee@gmail.com">rozi.archivee@gmail.com</a>
+        </div>
+
+        <form id="projectForm" class="reveal" action="https://formspree.io/f/mgakppap" method="POST">
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
+            </div>
+            <div class="field">
+              <label for="email">Your email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="business">Business / brand</label>
+            <input id="business" name="business" type="text" placeholder="Your business name" />
+          </div>
+
+          <div class="field">
+            <label for="package">Project direction</label>
+            <select id="package" name="package">
+              <option value="Not sure yet">Not sure yet</option>
+              <option value="The Petite">The Petite</option>
+              <option value="The Signature">The Signature</option>
+              <option value="The Bespoke">The Bespoke</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <input type="hidden" name="_subject" value="MAISON ROZÉ — New Website Enquiry" />
+          <label for="message">Tell us about the project</label>
+            <textarea id="message" name="message" required placeholder="What are you building? What do you need the website to do?"></textarea>
+          </div>
+
+          <button class="button" type="submit">Prepare Email Enquiry ↗</button>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================= FOOTER ========================= -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">MAISON ROZÉ</div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> MAISON ROZÉ. All rights reserved.</span>
+        <span>Independent creative web design studio.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================= PROJECT MODAL ========================= -->
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="close-modal" id="closeModal" aria-label="Close project preview">×</button>
+      <span class="eyebrow">Demo concept</span>
+      <h3 id="modalTitle">Project</h3>
+      <p id="modalText"></p>
+      <div class="modal-preview" id="modalPreview"></div>
+      <a class="button" href="#contact" id="modalCta">Discuss a similar direction ↗</a>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+       MAISON ROZÉ JAVASCRIPT
+       ========================================================= */
+    const CONTACT_EMAIL = "rozi.archivee@gmail.com";
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile navigation
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      menuToggle.textContent = open ? "×" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    // Scroll reveal
+    const revealItems = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach(item => observer.observe(item));
+
+    // Project concept modal
+    const projectData = {
+      fashion: {
+        title: "Atelier No. 01",
+        text: "A fashion-led editorial concept using oversized serif typography, restrained colour, product-led composition and a luxury magazine sensibility.",
+        bg: "#D8C4AC"
+      },
+      cafe: {
+        title: "Rue 14 Café",
+        text: "A warm hospitality direction designed around atmosphere, typography and simple visual storytelling rather than a conventional restaurant template.",
+        bg: "#F2E5D5"
+      },
+      beauty: {
+        title: "Éclat Botanicals",
+        text: "A refined beauty concept balancing soft dusty-pink tones, strong burgundy typography and a clean product-focused visual language.",
+        bg: "#C8A49F"
+      },
+      interior: {
+        title: "Forma Living",
+        text: "An editorial interiors direction with architectural framing, generous space and a sophisticated burgundy, sand and creme palette.",
+        bg: "#4D0E13"
+      }
+    };
+
+    const modal = document.getElementById("projectModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const modalPreview = document.getElementById("modalPreview");
+    const closeModal = document.getElementById("closeModal");
+
+    document.querySelectorAll("[data-project]").forEach(button => {
+      button.addEventListener("click", () => {
+        const project = projectData[button.dataset.project];
+        modalTitle.textContent = project.title;
+        modalText.textContent = project.text;
+        modalPreview.style.background = project.bg;
+        modal.classList.add("active");
+        document.body.classList.add("modal-open");
+        closeModal.focus();
+      });
+    });
+
+    function hideModal() {
+      modal.classList.remove("active");
+      document.body.classList.remove("modal-open");
+    }
+
+    closeModal.addEventListener("click", hideModal);
+    modal.addEventListener("click", event => {
+      if (event.target === modal) hideModal();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") hideModal();
+    });
+
+    document.getElementById("modalCta").addEventListener("click", hideModal);
+
+    // Package buttons pre-select the enquiry package and scroll to contact.
+    document.querySelectorAll(".package-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        document.getElementById("package").value = button.dataset.package;
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    // Submit enquiries directly to Formspree without leaving the MAISON ROZÉ page.
+    const form = document.getElementById("projectForm");
+    const formStatus = document.getElementById("formStatus");
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+
+      if (!form.reportValidity()) return;
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending enquiry…";
+      formStatus.textContent = "Sending your enquiry securely…";
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { "Accept": "application/json" }
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (response.ok) {
+          formStatus.textContent = "Thank you — your enquiry has been sent successfully. We’ll be in touch soon.";
+          form.reset();
+        } else {
+          const detail = Array.isArray(result.errors)
+            ? result.errors.map(error => error.message).join(" ")
+            : "";
+          formStatus.textContent = detail || "We couldn’t send your enquiry. Please try again or email us directly.";
+        }
+      } catch (error) {
+        formStatus.textContent = "A connection problem prevented submission. Please check your internet connection and try again.";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    });
+
+    // Keep the visible email link synced with CONTACT_EMAIL.
+    document.getElementById("emailLink").textContent = CONTACT_EMAIL;
+    document.getElementById("emailLink").href = `mailto:${CONTACT_EMAIL}`;
+</script>
+</body>
+</html>
